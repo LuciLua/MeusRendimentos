@@ -1,0 +1,212 @@
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f9f9f9;
+  color: #111;
+  margin: 0;
+  padding: 2rem;
+}
+
+.perfil-container {
+  max-width: 700px;
+  margin: 0 auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.perfil-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+#profile-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+.perfil-dados {
+  flex: 1;
+}
+
+.perfil-dados h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.perfil-dados p {
+  margin: 0.25rem 0;
+  color: #666;
+}
+
+#editar-perfil {
+  background: #000;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#editar-perfil:hover {
+  background: #222;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.info-grid div {
+  background: #f2f2f2;
+  padding: 1rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.info-grid strong {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+#bio-display {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-left: 4px solid #000;
+  background: #f4f4f4;
+  border-radius: 0.5rem;
+}
+
+#site-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #0070f3;
+  text-decoration: none;
+}
+
+#site-link:hover {
+  text-decoration: underline;
+}
+
+/* Modal */
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 1.25rem;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.modal-content label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 0.75rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+  background: #fafafa;
+}
+
+.modal-content input[type="range"] {
+  padding: 0;
+}
+
+.modal-content .botoes {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.modal-content button {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#salvar-perfil {
+  background-color: #000;
+  color: white;
+}
+
+#salvar-perfil:hover {
+  background-color: #222;
+}
+
+.close-modal {
+  background: transparent;
+  color: #666;
+  border: 1px solid #ccc;
+}
+
+.close-modal:hover {
+  color: #000;
+  border-color: #888;
+}
+
+
+.grafico-barra {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#grafico-barras {
+  /* para deixar o canvas 100% responsivo dentro do container */
+  width: 100% !important;
+  height: auto !important;
+  border-radius: 8px;
+  background-color: #fafafa;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.03);
+}
+
+/* Legenda do gráfico - você pode customizar via Chart.js também, mas aqui só do container */
+
+.chartjs-render-monitor {
+  /* ajusta suavemente a renderização do canvas */
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: optimize-contrast;
+  -ms-interpolation-mode: nearest-neighbor;
+}

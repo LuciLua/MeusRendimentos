@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rendimentos Mensais (FIIs)</title>
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+  <link rel="stylesheet" href="../../globals.css">
+
+  <script defer src="app.js"></script>
+  <script defer src="../../Components/Menu/menu.js"></script>
+
+
+</head>
+
+<body>
+
+  <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menu">
+    <span class="hamburger-emoji" aria-hidden="true">🟰</span>
+  </button>
+
+  <nav class="sidebar">
+    <h2>Menu</h2>
+    <ul>
+      <li><a href="/">👤 Meu Perfil</a></li>
+      <li><a href="../Calculadora/index.html">🧮 Calculadora de Juros Compostos</a></li>
+      <li><a href="../Rendimentos/index.html">📈 Rendimentos Mensais (FIIs)</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="top-section">
+      <h1>Meus Ativos (FIIs)</h1>
+      <button id="add-ativo-btn" class="primary">+ Novo Ativo</button>
+
+      <div class="indicators-container">
+        <div class="indicator-box">
+          Total Rendimentos Mensais
+          <span id="total-rendimentos">R$ 0,00</span>
+        </div>
+        <div class="indicator-box">
+          Média Dividend Yield
+          <span id="media-dy">0,00%</span>
+        </div>
+        <div class="indicator-box">
+          Valor Investido Total
+          <span id="valor-investido">R$ 0,00</span>
+        </div>
+        <div class="indicator-box">
+          Total de Ativos
+          <span id="total-ativos">0</span>
+        </div>
+        <div class="indicator-box">
+          Total de Ações
+          <span id="total-acoes">0</span>
+        </div>
+      </div>
+
+    </section>
+
+
+    <section class="ativos-lista" id="ativos-lista">
+      <!-- Os ativos serão listados dinamicamente aqui -->
+    </section>
+  </main>
+
+  <!-- Modal para adicionar novo ativo -->
+  <div class="modal" id="modal-novo-ativo">
+    <div class="modal-content">
+      <span class="close-modal" id="fechar-modal-novo">&times;</span>
+      <h2>Novo Ativo</h2>
+      <label for="codigo-ativo">Código do Ativo</label>
+      <input type="text" id="codigo-ativo" placeholder="Ex: HGLG11">
+
+      <label for="quantidade">Quantidade</label>
+      <input type="number" id="quantidade" placeholder="Ex: 10">
+
+      <label for="preco-medio">Preço Médio (R$)</label>
+      <input type="number" id="preco-medio" placeholder="Ex: 140.50">
+
+      <label for="ultimo-rendimento">Último Rendimento Recebido por Cota (R$)</label>
+      <input type="number" id="ultimo-rendimento" placeholder="Ex: 1.20">
+
+      <label for="dividend-yield">Dividend Yield (%)</label>
+      <input type="number" id="dividend-yield" placeholder="Ex: 0.85">
+
+      <button id="salvar-ativo-btn">Salvar Ativo</button>
+    </div>
+  </div>
+
+  <!-- Modal para editar ativo -->
+  <div class="modal" id="modal-editar-ativo">
+    <div class="modal-content">
+      <span class="close-modal" id="fechar-modal-editar">&times;</span>
+      <h2>Editar Ativo</h2>
+      <label for="editar-codigo">Código do Ativo</label>
+      <input type="text" id="editar-codigo" disabled>
+
+      <label for="editar-quantidade">Quantidade</label>
+      <input type="number" id="editar-quantidade">
+
+      <label for="editar-preco">Preço Médio (R$)</label>
+      <input type="number" id="editar-preco">
+
+      <label for="editar-rendimento">Último Rendimento por Cota (R$)</label>
+      <input type="number" id="editar-rendimento">
+
+      <label for="editar-dy">Dividend Yield (%)</label>
+      <input type="number" id="editar-dy">
+
+      <button id="salvar-edicao-btn">Salvar Alterações</button>
+    </div>
+  </div>
+</body>
+
+</html>

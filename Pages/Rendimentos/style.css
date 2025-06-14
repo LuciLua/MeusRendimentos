@@ -1,0 +1,125 @@
+/* Seções */
+.top-section {
+  max-width: 800px;
+  margin: 0 auto 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-section h1 {
+  flex-basis: 100%;
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+/* Container das caixas de indicadores */
+.indicators-container {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+}
+
+/* Cada box indicador */
+.indicator-box {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 20px;
+  flex: 1 1 150px;
+  min-width: 150px;
+  text-align: center;
+  font-weight: 600;
+  color: #333;
+  cursor: default;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.indicator-box:hover {
+  background-color: #f9f9f9;
+}
+
+.indicator-box p {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.indicator-box span {
+  display: block;
+  font-size: 16px;
+  margin-top: 6px;
+  color: #111;
+}
+
+
+.resumo-section {
+  max-width: 800px;
+  margin: 0 auto 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  font-size: 16px;
+  text-align: center;
+}
+
+/* Lista de ativos */
+.ativos-lista {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
+.ativo-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ativo-info {
+  flex-grow: 1;
+}
+
+.ativo-info p {
+  margin: 3px 0;
+}
+
+
+/* Modal reaproveitado do profile.css */
+.modal input[type="text"],
+.modal input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.modal-content button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.modal-content button:hover {
+  background-color: #3e8e41;
+}

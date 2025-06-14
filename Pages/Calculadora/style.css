@@ -1,0 +1,63 @@
+.calculator-container form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+.calculator-container form input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.calculator-container form input[type="number"]:focus {
+  border-color: #61dafb;
+  outline: none;
+}
+
+.calculator-container form button {
+  width: 100%;
+}
+
+#result {
+  font-size: 18px;
+  color: #20232a;
+  text-align: center;
+  margin-top: 20px;
+  min-height: 40px;
+}
+
+.chart-container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 40px auto 0;
+  padding: 20px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.chart-container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 40px auto 0;
+  padding: 20px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Removemos height fixa do canvas para não forçar distorção */
+canvas#investment-chart {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 2 / 1;
+}
+

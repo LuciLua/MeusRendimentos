@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfil do Investidor</title>
+  <link rel="stylesheet" href="Pages/Perfil/style.css" type="text/css" />
+  <link rel="stylesheet" href="globals.css" type="text/css" />
+  
+  <script defer src="Pages/Perfil/app.js"></script>
+  <script src="Components/Menu/menu.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+  <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menu">
+    <span class="hamburger-emoji" aria-hidden="true">🟰</span>
+  </button>
+
+  <nav class="sidebar">
+    <h2>Menu</h2>
+    <ul>
+      <li><a href="/">👤 Meu Perfil</a></li>
+      <li><a href="Pages/Calculadora/index.html">🧮 Calculadora de Juros Compostos</a></li>
+      <li><a href="Pages/Rendimentos/index.html">📈 Rendimentos Mensais (FIIs)</a></li>
+    </ul>
+  </nav>
+
+  <!-- Container flex que engloba perfil + gráficos -->
+  <div class="main-content" style="display: flex; gap: 2rem; max-width: 1200px; margin: 2rem auto; padding: 0 1rem;">
+
+    <!-- Seu container de perfil -->
+    <div class="perfil-container" style="flex: 1; min-width: 320px;">
+      <div class="perfil-header">
+        <img id="profile-pic" src="https://via.placeholder.com/80" alt="Foto de perfil" />
+        <div class="perfil-dados">
+          <h2 id="user-nome">Seu Nome</h2>
+          <p id="user-email">seuemail@exemplo.com</p>
+          <p id="user-phone">(00) 00000-0000</p>
+        </div>
+        <button id="editar-perfil">Editar</button>
+      </div>
+
+      <div class="info-grid">
+        <div>
+          <strong>Renda Mensal</strong>
+          <span id="renda-mensal">R$ 0,00</span>
+        </div>
+        <div>
+          <strong>Total Investido em FIIs</strong>
+          <span id="total-fii">R$ 0,00</span>
+        </div>
+      </div>
+
+      <div id="bio-display">
+        <strong>Bio:</strong>
+        <p id="bio-texto">Clique em editar para adicionar sua biografia.</p>
+        <a id="site-link" href="#" target="_blank" style="display:none">Acessar site pessoal</a>
+      </div>
+    </div>
+
+    <!-- Container dos gráficos -->
+    <div class="graficos-container"
+      style="flex: 1; min-width: 320px; display: flex; flex-direction: column; gap: 2rem;">
+
+      <!-- Gráfico de barras: Valor Investido vs Lucro -->
+      <section class="grafico-barra" style="margin-top: 2rem;">
+        <h3>Valor Investido vs Lucro</h3>
+        <canvas id="grafico-barras" width="400" height="250"></canvas>
+      </section>
+
+
+    </div>
+
+  </div>
+
+  <!-- Modal de edição -->
+  <div class="modal" id="modal-editar-perfil">
+    <div class="modal-content">
+      <h3>Editar Perfil</h3>
+
+      <label for="editar-nome">Nome</label>
+      <input type="text" id="editar-nome" />
+
+      <label for="editar-email">Email</label>
+      <input type="email" id="editar-email" />
+
+      <label for="editar-telefone">Telefone</label>
+      <input type="tel" id="editar-telefone" />
+
+      <label for="editar-bio">Biografia</label>
+      <textarea id="editar-bio" rows="4"></textarea>
+
+      <label for="editar-site">Site Pessoal (com https://)</label>
+      <input type="url" id="editar-site" />
+
+      <div class="botoes">
+        <button id="salvar-perfil">Salvar</button>
+        <button class="close-modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

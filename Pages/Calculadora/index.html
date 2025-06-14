@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calculadora de Juros Compostos</title>
+
+  <link rel="stylesheet" href="../../globals.css" type="text/css" />
+  <link rel="stylesheet" href="style.css" type="text/css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script defer src="app.js"></script>
+  <script src="../../Components/Menu/menu.js"></script>
+
+
+</head>
+
+<body>
+
+
+  <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menu">
+    <span class="hamburger-emoji" aria-hidden="true">🟰</span>
+  </button>
+
+  <nav class="sidebar">
+    <h2>Menu</h2>
+    <ul>
+      <li><a href="/">👤 Meu Perfil</a></li>
+      <li><a href="../Calculadora/index.html">🧮 Calculadora de Juros Compostos</a></li>
+      <li><a href="../Rendimentos/index.html">📈 Rendimentos Mensais (FIIs)</a></li>
+    </ul>
+  </nav>
+  <main>
+    <div class="calculator-container"
+      style="max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+      <h1>Calculadora de Juros Compostos</h1>
+
+      <form id="compound-interest-form">
+        <label for="principal">Valor Inicial (R$):</label>
+        <input type="number" id="principal" min="0" step="0.01" placeholder="Ex: 10000" required />
+
+        <label for="rate">Taxa de Juros (% ao mês):</label>
+        <input type="number" id="rate" min="0" step="0.01" placeholder="Ex: 1.5" required />
+
+        <label for="periods">Períodos (meses):</label>
+        <input type="number" id="periods" min="1" step="1" placeholder="Ex: 12" required />
+
+        <label for="monthly-contrib">Contribuição Mensal (R$):</label>
+        <input type="number" id="monthly-contrib" min="0" step="0.01" placeholder="Ex: 500" value="0" />
+
+        <button type="submit" class="primary">Calcular</button>
+      </form>
+
+      <div id="result" style="margin-top: 20px; font-weight: bold;"></div>
+      <div id="interest-earned" style="margin-top: 10px; font-weight: normal; color: #444;"></div>
+      <div class="chart-container">
+        <canvas id="investment-chart"></canvas>
+      </div>
+
+
+    </div>
+  </main>
+</body>
+
+</html>
