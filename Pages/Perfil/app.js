@@ -122,7 +122,6 @@ if (ativos.length > 0) {
   console.warn('Nenhum ativo para exibir gráficos.');
 }
 
-  criarGraficoBarras(ativos);
 
 
 
@@ -236,9 +235,11 @@ const fallbackImg = "https://randomuser.me/api/portraits/lego/1.jpg";
 
 // Abrir modal ao clicar no ícone 📷
 editarFotoBtn.addEventListener("click", () => {
-  urlFotoInput.value = "";
+  // Preenche o input com a URL atual da imagem
+  urlFotoInput.value = profilePic.src || '';
   modalEditarFoto.style.display = "flex";
 });
+
 
 // Fechar modais
 closeModalButtons.forEach(btn => {
@@ -250,21 +251,31 @@ closeModalButtons.forEach(btn => {
 // Salvar nova URL de imagem
 salvarFotoBtn.addEventListener("click", () => {
   const url = urlFotoInput.value.trim();
-
-  // Criar imagem temporária para testar validade da URL
   const img = new Image();
+
   img.onload = () => {
     profilePic.src = url;
     modalEditarFoto.style.display = "none";
+
+    // Atualizar localStorage com nova URL de foto
+    const dados = JSON.parse(localStorage.getItem('perfilDados')) || {};
+    dados.foto = url;
+    localStorage.setItem('perfilDados', JSON.stringify(dados));
   };
+
   img.onerror = () => {
     profilePic.src = fallbackImg;
     modalEditarFoto.style.display = "none";
+
+    // Se imagem falhar, ainda assim salva a fallback
+    const dados = JSON.parse(localStorage.getItem('perfilDados')) || {};
+    dados.foto = fallbackImg;
+    localStorage.setItem('perfilDados', JSON.stringify(dados));
   };
 
-  // Testar imagem apenas se URL estiver preenchida, senão usar fallback
   img.src = url || fallbackImg;
 });
+
 
 // Hover da imagem para exibir botão 📷
 const fotoWrapper = document.querySelector('.foto-perfil-wrapper');
