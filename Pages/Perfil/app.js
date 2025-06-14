@@ -112,14 +112,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-  // Pega ativos do localStorage
-  const ativos = getAtivos();
+// Pega ativos do localStorage
+const ativos = getAtivos();
 
-  // Só cria os gráficos se tiver ativos
-  if (ativos.length === 0) {
-    console.warn('Nenhum ativo para exibir gráficos.');
-    return;
-  }
+// Se tiver ativos, cria o gráfico
+if (ativos.length > 0) {
+  criarGraficoBarras(ativos);
+} else {
+  console.warn('Nenhum ativo para exibir gráficos.');
+}
 
   criarGraficoBarras(ativos);
 
@@ -213,12 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.style.display = 'none';
   });
 
-  // Fechar modal ao clicar fora do conteúdo (opcional)
-  window.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      modal.style.display = 'none';
-    }
-  });
+
 
   // Inicializa carregando dados
   carregarDados();
