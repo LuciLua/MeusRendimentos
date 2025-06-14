@@ -11,7 +11,6 @@
   <script defer src="Pages/Perfil/app.js"></script>
   <script src="Components/Menu/menu.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </head>
 
 <body>
@@ -23,19 +22,34 @@
   <nav class="sidebar">
     <h2>Menu</h2>
     <ul>
-      <li><a href="/">👤 Meu Perfil</a></li>
+      <li><a href="index.html">👤 Meu Perfil</a></li>
       <li><a href="Pages/Calculadora/index.html">🧮 Calculadora de Juros Compostos</a></li>
       <li><a href="Pages/Rendimentos/index.html">📈 Rendimentos Mensais (FIIs)</a></li>
     </ul>
   </nav>
 
-  <!-- Container flex que engloba perfil + gráficos -->
   <div class="main-content" style="display: flex; gap: 2rem; max-width: 1200px; margin: 2rem auto; padding: 0 1rem;">
 
-    <!-- Seu container de perfil -->
     <div class="perfil-container" style="flex: 1; min-width: 320px;">
-      <div class="perfil-header">
-        <img id="profile-pic" src="https://via.placeholder.com/80" alt="Foto de perfil" />
+      <div class="perfil-header" style="position: relative;">
+        <div class="foto-perfil-wrapper" style="position: relative; width: 80px; height: 80px;">
+          <img id="profile-pic" src="https://randomuser.me/api/portraits/lego/1.jpg" alt="Foto de perfil" style="width: 80px; height: 80px; border-radius: 50%;" />
+          <button id="editar-foto" aria-label="Editar foto" title="Alterar foto" style="
+            display: none;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+          ">📷</button>
+        </div>
+
         <div class="perfil-dados">
           <h2 id="user-nome">Seu Nome</h2>
           <p id="user-email">seuemail@exemplo.com</p>
@@ -62,22 +76,16 @@
       </div>
     </div>
 
-    <!-- Container dos gráficos -->
     <div class="graficos-container"
       style="flex: 1; min-width: 320px; display: flex; flex-direction: column; gap: 2rem;">
-
-      <!-- Gráfico de barras: Valor Investido vs Lucro -->
       <section class="grafico-barra" style="margin-top: 2rem;">
         <h3>Valor Investido vs Lucro</h3>
         <canvas id="grafico-barras" width="400" height="250"></canvas>
       </section>
-
-
     </div>
-
   </div>
 
-  <!-- Modal de edição -->
+  <!-- Modal de edição de dados -->
   <div class="modal" id="modal-editar-perfil">
     <div class="modal-content">
       <h3>Editar Perfil</h3>
@@ -103,6 +111,22 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal para trocar foto de perfil -->
+  <div class="modal" id="modal-editar-foto">
+    <div class="modal-content">
+      <h3>Alterar Foto de Perfil</h3>
+      <label for="url-foto">Insira a URL da imagem:</label>
+      <input  type="url" id="url-foto" placeholder="https://..." />
+      <div class="botoes">
+        <button id="salvar-foto">Salvar</button>
+        <button class="close-modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+
+
 
 </body>
 

@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function carregarDados() {
     const dados = JSON.parse(localStorage.getItem('perfilDados')) || {};
 
-    profilePic.src = dados.foto || 'https://via.placeholder.com/80';
+    profilePic.src = dados.foto || 'https://randomuser.me/api/portraits/lego/1.jpg';
     userNome.textContent = dados.nome || 'Seu Nome';
     userEmail.textContent = dados.email || 'seuemail@exemplo.com';
     userPhone.textContent = dados.telefone || '(00) 00000-0000';
@@ -223,3 +223,55 @@ document.addEventListener("DOMContentLoaded", () => {
   // Inicializa carregando dados
   carregarDados();
 });
+
+
+
+
+// Elementos do DOM
+const editarFotoBtn = document.getElementById("editar-foto");
+const modalEditarFoto = document.getElementById("modal-editar-foto");
+const salvarFotoBtn = document.getElementById("salvar-foto");
+const urlFotoInput = document.getElementById("url-foto");
+const profilePic = document.getElementById("profile-pic");
+const closeModalButtons = document.querySelectorAll(".close-modal");
+
+// Fallback aleatório
+const fallbackImg = "https://randomuser.me/api/portraits/lego/1.jpg";
+
+// Abrir modal ao clicar no ícone 📷
+editarFotoBtn.addEventListener("click", () => {
+  urlFotoInput.value = "";
+  modalEditarFoto.style.display = "flex";
+});
+
+// Fechar modais
+closeModalButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".modal").forEach(modal => modal.style.display = "none");
+  });
+});
+
+// Salvar nova URL de imagem
+salvarFotoBtn.addEventListener("click", () => {
+  const url = urlFotoInput.value.trim();
+
+  // Criar imagem temporária para testar validade da URL
+  const img = new Image();
+  img.onload = () => {
+    profilePic.src = url;
+    modalEditarFoto.style.display = "none";
+  };
+  img.onerror = () => {
+    profilePic.src = fallbackImg;
+    modalEditarFoto.style.display = "none";
+  };
+
+  // Testar imagem apenas se URL estiver preenchida, senão usar fallback
+  img.src = url || fallbackImg;
+});
+
+// Hover da imagem para exibir botão 📷
+const fotoWrapper = document.querySelector('.foto-perfil-wrapper');
+
+fotoWrapper.addEventListener('mouseenter', () => editarFotoBtn.style.display = 'block');
+fotoWrapper.addEventListener('mouseleave', () => editarFotoBtn.style.display = 'none');
