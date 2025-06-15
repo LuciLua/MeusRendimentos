@@ -1,0 +1,92 @@
+/* Modal base */
+.modal {
+  display: none; /* Ativado via JS */
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);
+}
+
+/* Conteúdo do Modal */
+.modal-content {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  max-width: 480px;
+  width: 90%;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  font-family: 'Inter', sans-serif;
+  color: #111;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Título */
+.modal-content h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* Labels */
+.modal-content label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Inputs */
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  background-color: #fafafa;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  transition: border 0.2s;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus {
+  outline: none;
+  border-color: #111;
+  background-color: #fff;
+}
+
+/* Range input */
+.modal-content input[type="range"] {
+  padding: 0;
+  margin-bottom: 1.25rem;
+}
+
+/* Botões */
+.modal-content .botoes {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  /* height: 100%; */
+  height: fit-content;
+  gap: 20px;
+}
+
+.modal-content .botoes button{
+  margin: 0;
+  line-height: 1.5;
+}
+
+
+.close-modal-x{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    font-weight: 500;
+    font-size: 22px;
+}

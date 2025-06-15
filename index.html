@@ -28,9 +28,9 @@
     </ul>
   </nav>
 
-  <div class="main-content" style="display: flex; gap: 2rem; max-width: 1200px; margin: 2rem auto; padding: 0 1rem;">
+  <main class="main-content">
 
-    <div class="perfil-container" style="flex: 1; min-width: 320px;">
+    <div class="perfil-container" style="min-width: 320px;">
       <div class="perfil-header" style="position: relative;">
         <div class="foto-perfil-wrapper" style="position: relative; width: 80px; height: 80px;">
           <img id="profile-pic" src="https://randomuser.me/api/portraits/lego/1.jpg" alt="Foto de perfil"
@@ -77,19 +77,19 @@
       </div>
     </div>
 
-    <div class="graficos-container"
-      style="flex: 1; min-width: 320px; display: flex; flex-direction: column; gap: 2rem;">
-      <section class="grafico-barra" style="margin-top: 2rem;">
+    <div class="graficos-container">
+      <section class="grafico-barra">
         <h3>Valor Investido vs Lucro</h3>
-        <canvas id="grafico-barras" width="400" height="250"></canvas>
+        <canvas id="grafico-barras"></canvas>
       </section>
     </div>
-  </div>
+  </main>
 
   <!-- Modal de edição de dados -->
   <div class="modal" id="modal-editar-perfil">
     <div class="modal-content">
       <h3>Editar Perfil</h3>
+      <button id="importar-exportar" class="primary" style="margin-bottom: 20px;">Importar/Exportar Perfil</button>
 
       <label for="editar-nome">Nome</label>
       <input type="text" id="editar-nome" />
@@ -107,10 +107,10 @@
       <input type="url" id="editar-site" />
 
       <div class="botoes">
-        <button id="salvar-perfil">Salvar</button>
-        <button class="close-modal">Cancelar</button>
-        <button id="importar-exportar">Importar/Exportar Perfil</button>
+        <button class="close-modal secundary">Cancelar</button>
+        <button id="salvar-perfil" class="primary">Salvar</button>
       </div>
+
     </div>
   </div>
 
@@ -138,8 +138,8 @@
       <label for="url-foto">Insira a URL da imagem:</label>
       <input type="url" id="url-foto" placeholder="https://..." />
       <div class="botoes">
-        <button id="salvar-foto">Salvar</button>
-        <button class="close-modal">Cancelar</button>
+        <button class="close-modal secundary">Cancelar</button>
+        <button id="salvar-foto" class="primary">Salvar</button>
       </div>
     </div>
   </div>
