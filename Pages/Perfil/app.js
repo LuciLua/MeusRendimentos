@@ -1,3 +1,6 @@
+import '../../Components/export.js';
+import '../../Components/import.js';
+
 document.addEventListener("DOMContentLoaded", () => {
   // Inputs do modal
   const inputNome = document.getElementById('editar-nome');
@@ -14,12 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const bioTexto = document.getElementById('bio-texto');
   const siteLink = document.getElementById('site-link');
 
-  // Botões e modal
-  const editarBtn = document.getElementById('editar-perfil');
-  const modal = document.getElementById('modal-editar-perfil');
-  const salvarBtn = document.getElementById('salvar-perfil');
-  const fecharBtn = modal.querySelector('.close-modal');
+  // importar export btn and modal
+  const importarExportarBtn = document.getElementById('importar-exportar');
+  const modalImportarExportar = document.getElementById('modal-importar-exportar');
 
+  // editar perfil btn e modal
+  const editarBtn = document.getElementById('editar-perfil');
+  const modalEditarPerfil = document.getElementById('modal-editar-perfil');
+  const salvarBtn = document.getElementById('salvar-perfil');
 
   // Função para pegar ativos do localStorage
   function getAtivos() {
@@ -111,7 +116,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-
 // Pega ativos do localStorage
 const ativos = getAtivos();
 
@@ -121,7 +125,6 @@ if (ativos.length > 0) {
 } else {
   console.warn('Nenhum ativo para exibir gráficos.');
 }
-
 
 
 
@@ -200,17 +203,20 @@ if (ativos.length > 0) {
 
   // Eventos para abrir e fechar modal
   editarBtn.addEventListener('click', () => {
-    modal.style.display = 'flex';
+    modalEditarPerfil.style.display = 'flex';
   });
 
-  fecharBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
-  });
+  // fechar modal perfil e abrir modal importar/exportar
+  importarExportarBtn.addEventListener('click', () =>{
+    modalEditarPerfil.style.display = 'none';
+    modalImportarExportar.style.display = 'flex';
+  })
+
 
   // Salvar dados e fechar modal
   salvarBtn.addEventListener('click', () => {
     salvarDados();
-    modal.style.display = 'none';
+    modalEditarPerfil.style.display = 'none';
   });
 
 

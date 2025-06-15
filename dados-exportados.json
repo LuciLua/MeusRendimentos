@@ -1,0 +1,19 @@
+{
+  "ativosFII": [
+    {
+      "nome": "TES",
+      "quantidade": 32,
+      "precoMedio": 23,
+      "rendimento": 2,
+      "dy": 12
+    }
+  ],
+  "perfilDados": {
+    "nome": "Luci",
+    "email": "luci.lua81@gmail.com",
+    "telefone": "",
+    "bio": "Olaaa 2",
+    "site": "https://lucilua.com.br",
+    "foto": "https://randomuser.me/api/portraits/lego/8.jpg"
+  }
+}
