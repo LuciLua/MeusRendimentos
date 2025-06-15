@@ -53,6 +53,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const labels = ativos.map(a => a.nome);
     const valorInvestido = ativos.map(a => a.quantidade * a.precoMedio);
     const lucro = ativos.map(a => a.quantidade * a.rendimento);
+    const dy = ativos.map(a => a.dy);
+    const rendimento = ativos.map(a => a.rendimento);
 
     return new Chart(ctx, {
       type: 'bar',
@@ -70,12 +72,36 @@ document.addEventListener("DOMContentLoaded", () => {
             data: lucro,  // seus valores
             backgroundColor: 'rgba(0,0,0,0.5)',  // cinza um pouco mais escuro
             borderWidth: 0,
+          },
+          {
+            label: 'Dividend Yield',
+            data: dy,  // seus valores,
+            backgroundColor: 'rgba(0,0,0,0.3)',  // cinza um pouco mais escuro
+            borderWidth: 0,
+          },
+          {
+            label: 'Rendimento por cota',
+            data: rendimento,  // seus valores,
+            backgroundColor: 'rgba(0,0,0,0.2)',  // cinza um pouco mais escuro
+            borderWidth: 0,
           }
         ]
       },
       options: {
         responsive: true,
         plugins: {
+          tooltip: {
+            callbacks: {
+              label: function (context) {
+                const label = context.dataset.label || '';
+                const value = context.parsed.y;
+                if (label === 'Dividend Yield') {
+                  return `${label}: ${value}%`;
+                }
+                return `${label}: ${value}`;
+              }
+            }
+          },
           legend: {
             labels: {
               color: '#222',
@@ -116,15 +142,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-// Pega ativos do localStorage
-const ativos = getAtivos();
+  // Pega ativos do localStorage
+  const ativos = getAtivos();
 
-// Se tiver ativos, cria o gráfico
-if (ativos.length > 0) {
-  criarGraficoBarras(ativos);
-} else {
-  console.warn('Nenhum ativo para exibir gráficos.');
-}
+  // Se tiver ativos, cria o gráfico
+  if (ativos.length > 0) {
+    criarGraficoBarras(ativos);
+  } else {
+    console.warn('Nenhum ativo para exibir gráficos.');
+  }
 
 
 
@@ -207,7 +233,7 @@ if (ativos.length > 0) {
   });
 
   // fechar modal perfil e abrir modal importar/exportar
-  importarExportarBtn.addEventListener('click', () =>{
+  importarExportarBtn.addEventListener('click', () => {
     modalEditarPerfil.style.display = 'none';
     modalImportarExportar.style.display = 'flex';
   })
