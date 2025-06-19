@@ -55,11 +55,11 @@ document.addEventListener("DOMContentLoaded", () => {
           <p><strong>${ativo.nome}</strong></p></div>
 
       <div style="display: flex; gap: 5px; flex-wrap: wrap;">
-        <p class="quantidade">DY: ${ativo.dy}%</p>
-        <p class="quantidade">${ativo.quantidade} cotas</p>
+        <p class="quantidade" style="background: #d0d0d0;">DY: ${ativo.dy}%</p>
+        <p class="quantidade" style="background: #dedede;">${ativo.quantidade} cotas</p>
         <p class="quantidade">PM: ${formatCurrency(ativo.precoMedio)}</p>
-        <p class="quantidade">Rendimento/mês: ${formatCurrency(rendimentoMensal.toFixed(2))}</p>
-        <p class="quantidade">PM: ${formatCurrency(ativo.rendimento)}</p>
+        <p class="quantidade" style="background: #121212; color: #fafafa">Rendimento/mês: ${formatCurrency(rendimentoMensal.toFixed(2))}</p>
+        <p class="quantidade" style="background: #404040; color: #ffffff">Rend: ${formatCurrency(ativo.rendimento)}/cota</p>
       </div>
             <div>
       <img class="menuClicavelManual" src="../../assets/more.png" style="width: 30px; padding-top: 10px;"/>
