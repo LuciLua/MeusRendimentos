@@ -22,75 +22,163 @@ document.addEventListener("DOMContentLoaded", () => {
   const loadAtivos = () => JSON.parse(localStorage.getItem(ativosKey)) || [];
   const saveAtivos = ativos => localStorage.setItem(ativosKey, JSON.stringify(ativos));
 
-const render = () => {
-  const ativos = loadAtivos();
-  ativosLista.innerHTML = "";
-  let totalRendimentos = 0;
-  let totalDy = 0;
-  let valorInvestidoTotal = 0;
-  let totalAcoes = 0;
+  const render = () => {
+    const ativos = loadAtivos();
+    ativosLista.innerHTML = "";
+    let totalRendimentos = 0;
+    let totalDy = 0;
+    let valorInvestidoTotal = 0;
+    let totalAcoes = 0;
 
-  ativos.forEach((ativo, index) => {
-    const rendimentoMensal = (ativo.quantidade * ativo.rendimento);
-    totalRendimentos += rendimentoMensal;
-    totalDy += parseFloat(ativo.dy);
-    valorInvestidoTotal += ativo.quantidade * ativo.precoMedio;
-    totalAcoes += ativo.quantidade;
+    ativos.forEach((ativo, index) => {
+      const rendimentoMensal = (ativo.quantidade * ativo.rendimento);
+      totalRendimentos += rendimentoMensal;
+      totalDy += parseFloat(ativo.dy);
+      valorInvestidoTotal += ativo.quantidade * ativo.precoMedio;
+      totalAcoes += ativo.quantidade;
 
-    // Criar os cards normalmente
-    const card = document.createElement("div");
-    card.className = "ativo-card";
+      // Criar os cards normalmente
+      const card = document.createElement("div");
+      card.className = "ativo-card";
 
-    const info = document.createElement("div");
-    info.className = "ativo-info";
-    info.innerHTML = `
-      <p><strong>${ativo.nome}</strong></p>
-      <p>Qtd: ${ativo.quantidade} | Preço médio: ${formatCurrency(ativo.precoMedio)}</p>
-      <p>Rendimento: ${formatCurrency(ativo.rendimento)} | DY: ${ativo.dy}%</p>
-      <p>Rendimento/mês: ${formatCurrency(rendimentoMensal.toFixed(2))}</p>
+
+      const info = document.createElement("div");
+      info.className = "ativo-info";
+      info.id = `fii_${ativo.nome}`
+      info.innerHTML = `
+    <div>
+    <div class="card-header">
+          <div class="column">
+          <div class="fii-img">
+            <img src="../../assets/fii.png"/>
+          </div>
+          <p><strong>${ativo.nome}</strong></p></div>
+
+      <div style="display: flex; gap: 5px; flex-wrap: wrap;">
+        <p class="quantidade">DY: ${ativo.dy}%</p>
+        <p class="quantidade">${ativo.quantidade} cotas</p>
+        <p class="quantidade">PM: ${formatCurrency(ativo.precoMedio)}</p>
+        <p class="quantidade">Rendimento/mês: ${formatCurrency(rendimentoMensal.toFixed(2))}</p>
+        <p class="quantidade">PM: ${formatCurrency(ativo.rendimento)}</p>
+      </div>
+            <div>
+      <img class="menuClicavelManual" src="../../assets/more.png" style="width: 30px; padding-top: 10px;"/>
+      </div>
+
+    </div>
+    </div>
     `;
 
-    const editBtn = document.createElement("button");
-    editBtn.className = "secundary edit-btn";
-    editBtn.textContent = "Editar";
-    editBtn.onclick = () => {
-      editIndex = index;
-      document.getElementById("editar-codigo").value = ativo.nome;
-      document.getElementById("editar-quantidade").value = ativo.quantidade;
-      document.getElementById("editar-preco").value = ativo.precoMedio;
-      document.getElementById("editar-rendimento").value = ativo.rendimento;
-      document.getElementById("editar-dy").value = ativo.dy;
-      modalEdit.style.display = "flex";
-    };
+      function editarAtivo() {
+        editIndex = index;
+        document.getElementById("editar-codigo").value = ativo.nome;
+        document.getElementById("editar-quantidade").value = ativo.quantidade;
+        document.getElementById("editar-preco").value = ativo.precoMedio;
+        document.getElementById("editar-rendimento").value = ativo.rendimento;
+        document.getElementById("editar-dy").value = ativo.dy;
+        modalEdit.style.display = "flex";
+      };
 
-    const deleteBtn = document.createElement("button");
-    deleteBtn.className = "delete edit-btn";
-    deleteBtn.style.backgroundColor = "#e74c3c";
-    deleteBtn.style.marginLeft = "8px";
-    deleteBtn.textContent = "Excluir";
-    deleteBtn.onclick = () => {
-      if (confirm(`Confirma exclusão do ativo ${ativo.nome}?`)) {
-        const ativos = loadAtivos();
-        ativos.splice(index, 1);
-        saveAtivos(ativos);
-        render();
+      function deletarAtivo() {
+        if (confirm(`Confirma exclusão do ativo ${ativo.nome}?`)) {
+          const ativos = loadAtivos();
+          ativos.splice(index, 1);
+          saveAtivos(ativos);
+          render();
+        }
+      };
+
+
+      const btnCollection = document.createElement("div");
+      btnCollection.className = "btnCollection"
+
+      const menuContextByCodeFII = document.createElement("div");
+      menuContextByCodeFII.className = "menu-context";
+      menuContextByCodeFII.id = `customContextMenu_${ativo.nome}`;
+
+      card.appendChild(menuContextByCodeFII)
+
+
+      card.appendChild(info);
+      card.appendChild(btnCollection)
+
+      ativosLista.appendChild(card);
+
+      const menuContext = document.createElement("div")
+      const ul = document.createElement("ul");
+
+      const liVer = document.createElement("li");
+      liVer.textContent = "⚙️ Editar";
+      liVer.onclick = () => editarAtivo();
+
+      const liExcluir = document.createElement("li");
+      liExcluir.textContent = "❌ Excluir";
+      liExcluir.onclick = () => deletarAtivo();
+
+      ul.appendChild(liVer);
+      ul.appendChild(liExcluir);
+
+      menuContextByCodeFII.appendChild(ul);
+
+      card.appendChild(menuContext)
+
+
+      const menu = document.getElementById(`customContextMenu_${ativo.nome}`);
+
+      if (!menu) {
+        console.error("❌ customContextMenu NÃO encontrado no DOM!");
+        return;
       }
-    };
 
-    card.appendChild(info);
-    card.appendChild(editBtn);
-    card.appendChild(deleteBtn);
-    ativosLista.appendChild(card);
-  });
 
-  // Atualiza todos os indicadores
-  totalRendimentosEl.textContent = formatCurrency(totalRendimentos);
-  mediaDyEl.textContent = (ativos.length ? (totalDy / ativos.length).toFixed(2) : "0.00") + "%";
+      card.addEventListener("contextmenu", (e) => {
+        e.preventDefault();
+        const { clientX: mouseX, clientY: mouseY } = e;
+        menu.style.top = `${mouseY}px`;
+        menu.style.left = `${mouseX}px`;
+        menuContextByCodeFII.style.display = "flex";
+      });
 
-  document.getElementById("valor-investido").textContent = formatCurrency(valorInvestidoTotal);
-  document.getElementById("total-ativos").textContent = ativos.length;
-  document.getElementById("total-acoes").textContent = totalAcoes;
-};
+      card.addEventListener("mouseleave", (e) =>{
+                menuContextByCodeFII.style.display = "none";
+      })
+
+      document.querySelectorAll('.menuClicavelManual').forEach((item) => {
+        item.addEventListener("click", (e) => {
+          e.preventDefault();
+          console.log('as')
+          const { clientX: mouseX, clientY: mouseY } = e;
+          menu.style.top = `${mouseY}px`;
+          menu.style.right = `${mouseX}px`;
+          menuContextByCodeFII.style.display = "flex";
+        });
+      })
+
+      // Oculta o menu ao clicar em qualquer lugar
+      // document.addEventListener("click", () => {
+        // menu.style.display = "none";
+        // menuContextByCodeFII.style.display = "none";
+      // });
+
+      document.addEventListener("auxclick", () => {
+        // menu.style.display = "none";
+        menuContextByCodeFII.style.display = "none";
+      });
+
+    });
+
+    // Atualiza todos os indicadores
+    totalRendimentosEl.textContent = formatCurrency(totalRendimentos);
+    mediaDyEl.textContent = (ativos.length ? (totalDy / ativos.length).toFixed(2) : "0.00") + "%";
+
+    document.getElementById("valor-investido").textContent = formatCurrency(valorInvestidoTotal);
+    document.getElementById("total-ativos").textContent = ativos.length;
+    document.getElementById("total-acoes").textContent = totalAcoes;
+
+
+
+
+  };
 
 
   // Modal control
@@ -170,5 +258,9 @@ const render = () => {
     }
   };
 
+
+
   render();
 });
+
+

@@ -30,59 +30,49 @@
 
   <main class="main-content">
 
-    <div class="perfil-container" style="min-width: 320px;">
-      <div class="perfil-header" style="position: relative;">
-        <div class="foto-perfil-wrapper" style="position: relative; width: 80px; height: 80px;">
-          <img id="profile-pic" src="https://randomuser.me/api/portraits/lego/1.jpg" alt="Foto de perfil"
-            style="width: 80px; height: 80px; border-radius: 50%;" />
-          <button id="editar-foto" aria-label="Editar foto" title="Alterar foto" style="
-            display: none;
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            background-color: rgba(0,0,0,0.6);
-            border: none;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            color: white;
-            cursor: pointer;
-            font-size: 16px;
-          ">📷</button>
+    <div class="flexbox">
+      <div class="perfil-container">
+        <div class="perfil-header" style="position: relative;">
+          <div class="foto-perfil-wrapper" style="position: relative; width: 80px; height: 80px;">
+            <img id="profile-pic" src="https://randomuser.me/api/portraits/lego/1.jpg" alt="Foto de perfil"
+              style="width: 80px; height: 80px; border-radius: 50%;" />
+            <button id="editar-foto" aria-label="Editar foto" title="Alterar foto">📷</button>
+          </div>
+
+          <div class="perfil-dados">
+            <h2 id="user-nome">Seu Nome</h2>
+            <p id="user-email">seuemail@exemplo.com</p>
+            <p id="user-phone">(00) 00000-0000</p>
+          </div>
+          <button id="editar-perfil">Editar</button>
         </div>
 
-        <div class="perfil-dados">
-          <h2 id="user-nome">Seu Nome</h2>
-          <p id="user-email">seuemail@exemplo.com</p>
-          <p id="user-phone">(00) 00000-0000</p>
+        <div class="info-grid">
+          <div>
+            <strong>Renda Mensal (FIIs)</strong>
+            <span id="renda-mensal">R$ 0,00</span>
+          </div>
+          <div>
+            <strong>Total Investido (FIIs)</strong>
+            <span id="total-fii">R$ 0,00</span>
+          </div>
         </div>
-        <button id="editar-perfil">Editar</button>
-      </div>
 
-      <div class="info-grid">
-        <div>
-          <strong>Renda Mensal</strong>
-          <span id="renda-mensal">R$ 0,00</span>
-        </div>
-        <div>
-          <strong>Total Investido em FIIs</strong>
-          <span id="total-fii">R$ 0,00</span>
+        <div id="bio-display">
+          <strong>Bio:</strong>
+          <p id="bio-texto">Clique em editar para adicionar sua biografia.</p>
+          <a id="site-link" href="#" target="_blank" style="display:none">Acessar site pessoal</a>
         </div>
       </div>
 
-      <div id="bio-display">
-        <strong>Bio:</strong>
-        <p id="bio-texto">Clique em editar para adicionar sua biografia.</p>
-        <a id="site-link" href="#" target="_blank" style="display:none">Acessar site pessoal</a>
+      <div class="graficos-container">
+        <section class="grafico-barra">
+          <h3>Valor Investido vs Lucro (FIIs)</h3>
+          <canvas id="grafico-barras"></canvas>
+        </section>
       </div>
     </div>
 
-    <div class="graficos-container">
-      <section class="grafico-barra">
-        <h3>Valor Investido vs Lucro</h3>
-        <canvas id="grafico-barras"></canvas>
-      </section>
-    </div>
   </main>
 
   <!-- Modal de edição de dados -->
@@ -126,7 +116,7 @@
 
       <div class="botoes">
         <!-- <button id="salvar-perfil">Salvar</button> -->
-        <button class="close-modal">Cancelar</button>
+        <button class="close-modal secundary">Cancelar</button>
       </div>
     </div>
   </div>

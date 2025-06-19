@@ -79,7 +79,7 @@
 }
 
 /* Mobile: sidebar fechada por padrão */
-@media (max-width: 1100px) {
+@media (max-width: 1150px) {
   .sidebar {
     transform: translateX(-260px); /* fora da tela */
   }
@@ -105,7 +105,7 @@
 }
 
 /* Desktop: botão escondido */
-@media (min-width: 1100px) {
+@media (min-width: 1150px) {
   .menu-toggle {
     display: none;
   }

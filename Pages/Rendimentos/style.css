@@ -72,12 +72,62 @@
 /* Lista de ativos */
 .ativos-lista {
   max-width: 800px;
+  width: 100%; 
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 12px;
   max-height: 400px;
   overflow-y: scroll;
+}
+
+.ativos-lista .ativo-card{
+  display: flex;
+  /* flex-direction: column; */
+  width: 100%;
+}
+
+.ativos-lista .ativo-card .fii-img{
+  display: flex;
+}
+
+.fii-img img{
+  object-fit: cover;
+  width: 45px;
+}
+
+.ativo-card .fii-infos{
+  display: flex;
+  flex-direction: column;
+}
+.ativo-card  .quantidade{
+  background-color: #f1f1f1;
+  border-radius: 4px;
+  padding: 5px;
+  width: fit-content;
+  font-size: 12px;
+}
+
+.ativo-card .card-header{
+  display: flex;
+  width: 100%;
+  gap: 30px;
+}
+
+.card-header .column{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30%;
+  /* align-items: center; */
+}
+
+.btnCollection{
+  display: flex;
+  gap: 10px;
+  width: fit-content;
+  margin-right: auto;
+  padding-top: 20px;
 }
 
 .ativo-card {

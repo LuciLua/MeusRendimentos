@@ -11,6 +11,7 @@
 
   <script defer src="app.js"></script>
   <script defer src="../../Components/Menu/menu.js"></script>
+  <script defer src="../../Components/ContextMenus/fii.js"></script>
 
 
 </head>
@@ -31,39 +32,44 @@
   </nav>
 
   <main class="main-content">
-    <section class="top-section">
-      <h1>Meus Ativos (FIIs)</h1>
-      <button id="add-ativo-btn" class="primary">+ Novo Ativo</button>
+    <div class="flexbox">
+      <section class="top-section">
+        <h1>Meus Ativos (FIIs)</h1>
+        <button id="add-ativo-btn" class="primary">+ Novo Ativo</button>
 
-      <div class="indicators-container">
-        <div class="indicator-box">
-          Total Rendimentos Mensais
-          <span id="total-rendimentos">R$ 0,00</span>
+        <div class="indicators-container">
+          <div class="indicator-box">
+            Total Rendimentos Mensais
+            <span id="total-rendimentos">R$ 0,00</span>
+          </div>
+          <div class="indicator-box">
+            Média Dividend Yield
+            <span id="media-dy">0,00%</span>
+          </div>
+          <div class="indicator-box">
+            Valor Investido Total
+            <span id="valor-investido">R$ 0,00</span>
+          </div>
+          <div class="indicator-box">
+            Total de Ativos
+            <span id="total-ativos">0</span>
+          </div>
+          <div class="indicator-box">
+            Total de Ações
+            <span id="total-acoes">0</span>
+          </div>
         </div>
-        <div class="indicator-box">
-          Média Dividend Yield
-          <span id="media-dy">0,00%</span>
-        </div>
-        <div class="indicator-box">
-          Valor Investido Total
-          <span id="valor-investido">R$ 0,00</span>
-        </div>
-        <div class="indicator-box">
-          Total de Ativos
-          <span id="total-ativos">0</span>
-        </div>
-        <div class="indicator-box">
-          Total de Ações
-          <span id="total-acoes">0</span>
-        </div>
+
+      </section>
+
+      <div style="width: 100%; gap: 20px; display: flex; flex-direction: column;">
+        <h1 style="font-size: 20px;">Meus FIIs</h1>
+        <section class="ativos-lista" id="ativos-lista">
+          <!-- Os ativos serão listados dinamicamente aqui -->
+        </section>
       </div>
+    </div>
 
-    </section>
-
-
-    <section class="ativos-lista" id="ativos-lista">
-      <!-- Os ativos serão listados dinamicamente aqui -->
-    </section>
   </main>
 
   <!-- Modal para adicionar novo ativo -->
@@ -86,7 +92,7 @@
       <label for="dividend-yield">Dividend Yield (%)</label>
       <input type="number" id="dividend-yield" placeholder="Ex: 0.85">
 
-      <button id="salvar-ativo-btn">Salvar Ativo</button>
+      <button id="salvar-ativo-btn" class="primary">Salvar Ativo</button>
     </div>
   </div>
 
@@ -110,9 +116,11 @@
       <label for="editar-dy">Dividend Yield (%)</label>
       <input type="number" id="editar-dy">
 
-      <button id="salvar-edicao-btn">Salvar Alterações</button>
+      <button id="salvar-edicao-btn" class="primary">Salvar Alterações</button>
+      <button class="close-modal secundary">Cancelar</button>
     </div>
   </div>
+
 </body>
 
 </html>
