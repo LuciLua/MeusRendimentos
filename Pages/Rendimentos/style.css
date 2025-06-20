@@ -96,6 +96,10 @@
   width: 45px;
 }
 
+.ativo-card{
+  position: relative;
+}
+
 .ativo-card .fii-infos{
   display: flex;
   flex-direction: column;

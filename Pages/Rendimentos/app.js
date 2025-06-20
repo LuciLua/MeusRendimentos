@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Criar os cards normalmente
       const card = document.createElement("div");
       card.className = "ativo-card";
+      card.style = 'position: block'
 
 
       const info = document.createElement("div");
@@ -52,7 +53,8 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="fii-img">
             <img src="../../assets/fii.png"/>
           </div>
-          <p><strong>${ativo.nome}</strong></p></div>
+          <p><strong>${ativo.nome}</strong></p>
+    </div>
 
       <div style="display: flex; gap: 5px; flex-wrap: wrap;">
         <p class="quantidade" style="background: #d0d0d0;">DY: ${ativo.dy}%</p>
@@ -61,9 +63,9 @@ document.addEventListener("DOMContentLoaded", () => {
         <p class="quantidade" style="background: #121212; color: #fafafa">Rendimento/mês: ${formatCurrency(rendimentoMensal.toFixed(2))}</p>
         <p class="quantidade" style="background: #404040; color: #ffffff">Rend: ${formatCurrency(ativo.rendimento)}/cota</p>
       </div>
-            <div>
-      <img class="menuClicavelManual" src="../../assets/more.png" style="width: 30px; padding-top: 10px;"/>
-      </div>
+            <div id="menuClicavelManual_${ativo.nome}">
+              <img  src="../../assets/more.png" style="width: 30px; padding-top: 10px;"/>
+            </div>
 
     </div>
     </div>
@@ -95,75 +97,45 @@ document.addEventListener("DOMContentLoaded", () => {
       const menuContextByCodeFII = document.createElement("div");
       menuContextByCodeFII.className = "menu-context";
       menuContextByCodeFII.id = `customContextMenu_${ativo.nome}`;
-
-      card.appendChild(menuContextByCodeFII)
-
+      menuContextByCodeFII.style.position = 'absolute'
 
       card.appendChild(info);
       card.appendChild(btnCollection)
 
       ativosLista.appendChild(card);
 
-      const menuContext = document.createElement("div")
-      const ul = document.createElement("ul");
+      card.appendChild(menuContextByCodeFII)
 
+      // opcoes do menu
+      const ul = document.createElement("ul");
       const liVer = document.createElement("li");
       liVer.textContent = "⚙️ Editar";
       liVer.onclick = () => editarAtivo();
-
       const liExcluir = document.createElement("li");
       liExcluir.textContent = "❌ Excluir";
       liExcluir.onclick = () => deletarAtivo();
 
+      // coloca opcoes no meu
       ul.appendChild(liVer);
       ul.appendChild(liExcluir);
-
       menuContextByCodeFII.appendChild(ul);
 
-      card.appendChild(menuContext)
 
-
-      const menu = document.getElementById(`customContextMenu_${ativo.nome}`);
-
-      if (!menu) {
+      if (!menuContextByCodeFII) {
         console.error("❌ customContextMenu NÃO encontrado no DOM!");
         return;
       }
 
-
-      card.addEventListener("contextmenu", (e) => {
-        e.preventDefault();
-        const { clientX: mouseX, clientY: mouseY } = e;
-        menu.style.top = `${mouseY}px`;
-        menu.style.left = `${mouseX}px`;
-        menuContextByCodeFII.style.display = "flex";
-      });
-
-      card.addEventListener("mouseleave", (e) =>{
-                menuContextByCodeFII.style.display = "none";
-      })
-
-      document.querySelectorAll('.menuClicavelManual').forEach((item) => {
-        item.addEventListener("click", (e) => {
-          e.preventDefault();
-          console.log('as')
-          const { clientX: mouseX, clientY: mouseY } = e;
-          menu.style.top = `${mouseY}px`;
-          menu.style.right = `${mouseX}px`;
-          menuContextByCodeFII.style.display = "flex";
-        });
-      })
-
-      // Oculta o menu ao clicar em qualquer lugar
-      // document.addEventListener("click", () => {
-        // menu.style.display = "none";
-        // menuContextByCodeFII.style.display = "none";
-      // });
-
-      document.addEventListener("auxclick", () => {
-        // menu.style.display = "none";
+      card.addEventListener("mouseleave", (e) => {
         menuContextByCodeFII.style.display = "none";
-      });
+      })
+
+      document.querySelector(`#menuClicavelManual_${ativo.nome}`).addEventListener("click", (e) => {
+        e.preventDefault();
+        menuContextByCodeFII.style.display = "flex";
+        menuContextByCodeFII.style.top = `50px`;
+        menuContextByCodeFII.style.right = `45px`;
+      })
 
     });
 
