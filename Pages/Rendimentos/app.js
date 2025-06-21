@@ -110,12 +110,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const ul = document.createElement("ul");
       const liVer = document.createElement("li");
       liVer.textContent = "⚙️ Editar";
-      liVer.onclick = () => { editarAtivo() };
-      liVer.ontouchend = () => menuContextByCodeFII.style.display = 'none'
+      liVer.onclick = () => { editarAtivo(); menuContextByCodeFII.style.display = 'none' };
       const liExcluir = document.createElement("li");
       liExcluir.textContent = "❌ Excluir";
-      liExcluir.onclick = () => { deletarAtivo() };
-      liExcluir.ontouchend = () => menuContextByCodeFII.style.display = 'none'
+      liExcluir.onclick = () => { deletarAtivo(); menuContextByCodeFII.style.display = 'none' };
 
 
       // coloca opcoes no meu
