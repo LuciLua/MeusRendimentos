@@ -9,6 +9,16 @@
   align-items: center;
 }
 
+.side-section {
+  max-width: 800px;
+  margin: 0 auto 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-between;
+  /* align-items: center; */
+}
+
 .top-section h1 {
   flex-basis: 100%;
   font-size: 24px;
